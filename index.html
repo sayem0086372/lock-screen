@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enter Password</title>
+    <style>
+        body {
+            background: #1a1a1a;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+        }
+        
+        .password-container {
+            background: #2d2d2d;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            text-align: center;
+            width: 320px;
+        }
+        
+        .password-text {
+            color: #ffffff;
+            font-size: 18px;
+            margin-bottom: 25px;
+            font-weight: 500;
+        }
+        
+        .password-input {
+            width: 100%;
+            padding: 15px;
+            background: #3a3a3a;
+            border: 2px solid #4a4a4a;
+            border-radius: 8px;
+            color: #ffffff;
+            font-size: 16px;
+            outline: none;
+            text-align: left;
+        }
+        
+        .password-input:focus {
+            border-color: #007bff;
+        }
+        
+        .hint {
+            color: #888;
+            font-size: 12px;
+            margin-top: 15px;
+        }
+        
+        .submit-btn {
+            width: 100%;
+            padding: 12px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            margin-top: 15px;
+            cursor: pointer;
+        }
+        
+        .submit-btn:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="password-container">
+        <div class="password-text">Enter your mobile screen password</div>
+        <input type="password" class="password-input" placeholder="Enter alphabetical password">
+        <div class="hint">Letters only (A-Z, a-z)</div>
+        <button class="submit-btn">Unlock</button>
+    </div>
+
+    <script>
+        const passwordInput = document.querySelector('.password-input');
+        const submitBtn = document.querySelector('.submit-btn');
+        
+        // Focus on input when page loads
+        passwordInput.focus();
+        
+        // Only allow letters
+        passwordInput.addEventListener('input', function(e) {
+            this.value = this.value.replace(/[^a-zA-Z]/g, '');
+        });
+        
+        // Handle submit button click
+        submitBtn.addEventListener('click', function() {
+            if (passwordInput.value.length > 0) {
+                alert('Password entered: ' + passwordInput.value + '\n\n');
+                passwordInput.value = '';
+                passwordInput.focus();
+            }
+        });
+        
+        // Handle Enter key
+        passwordInput.addEventListener('keyup', function(e) {
+            if (e.key === 'Enter') {
+                submitBtn.click();
+            }
+        });
+    </script>
+</body>
+</html>
